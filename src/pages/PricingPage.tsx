@@ -1,3 +1,6 @@
+import { NavLink } from "react-router";
+import { Routes } from "../constants/Routes";
+
 export function PricingPage() {
   return (
     <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -264,16 +267,12 @@ export function PricingPage() {
         </div>
 
         <div className="mt-12 text-center">
-          <button
-            onClick={() =>
-              window.dispatchEvent(
-                new CustomEvent("navigate", { detail: "contact" })
-              )
-            }
+          <NavLink
+            to={Routes.CONTACT}
             className="inline-block bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 shadow-lg shadow-red-900/50"
           >
             Получить точный расчёт стоимости
-          </button>
+          </NavLink>
         </div>
       </div>
     </div>

@@ -1,4 +1,6 @@
-import { ArrowRight, Flame, Shield, Star, Award } from 'lucide-react';
+import { ArrowRight, Flame, Shield, Star, Award } from "lucide-react";
+import { NavLink } from "react-router";
+import { Routes } from "../constants/Routes";
 
 export function HomePage() {
   return (
@@ -18,19 +20,19 @@ export function HomePage() {
               Долговечное покрытие с гарантией качества.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: 'contact' }))}
+              <NavLink
+                to={Routes.CONTACT}
                 className="group bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 flex items-center space-x-2 shadow-lg shadow-red-900/50"
               >
                 <span>Получить консультацию</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: 'pricing' }))}
+              </NavLink>
+              <NavLink
+                to={Routes.PRICING}
                 className="border-2 border-gray-700 hover:border-red-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all"
               >
                 Узнать цены
-              </button>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -44,13 +46,15 @@ export function HomePage() {
                 Что такое порошковая покраска?
               </h2>
               <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                Порошковая покраска — современная технология нанесения защитно-декоративного
-                покрытия на металлические изделия. Порошковая краска наносится электростатическим
-                способом и затем полимеризуется в специальной печи при температуре 180-220°C.
+                Порошковая покраска — современная технология нанесения
+                защитно-декоративного покрытия на металлические изделия.
+                Порошковая краска наносится электростатическим способом и затем
+                полимеризуется в специальной печи при температуре 180-220°C.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Такое покрытие обладает высокой прочностью, устойчивостью к коррозии,
-                ультрафиолету и механическим повреждениям. Срок службы покрытия — более 15 лет.
+                Такое покрытие обладает высокой прочностью, устойчивостью к
+                коррозии, ультрафиолету и механическим повреждениям. Срок службы
+                покрытия — более 15 лет.
               </p>
             </div>
             <div className="bg-gradient-to-br from-red-950/30 to-black/50 rounded-2xl p-8 border border-red-900/30">
@@ -63,22 +67,34 @@ export function HomePage() {
                 <div className="flex items-start space-x-3">
                   <Shield className="w-6 h-6 text-red-500 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="text-white font-semibold mb-1">Защита от коррозии</h4>
-                    <p className="text-gray-400 text-sm">Надежная защита металла от ржавчины на 15+ лет</p>
+                    <h4 className="text-white font-semibold mb-1">
+                      Защита от коррозии
+                    </h4>
+                    <p className="text-gray-400 text-sm">
+                      Надежная защита металла от ржавчины на 15+ лет
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Star className="w-6 h-6 text-red-500 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="text-white font-semibold mb-1">Эстетичный вид</h4>
-                    <p className="text-gray-400 text-sm">Равномерное покрытие с богатой палитрой цветов</p>
+                    <h4 className="text-white font-semibold mb-1">
+                      Эстетичный вид
+                    </h4>
+                    <p className="text-gray-400 text-sm">
+                      Равномерное покрытие с богатой палитрой цветов
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Flame className="w-6 h-6 text-red-500 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="text-white font-semibold mb-1">Экологичность</h4>
-                    <p className="text-gray-400 text-sm">Без растворителей и вредных испарений</p>
+                    <h4 className="text-white font-semibold mb-1">
+                      Экологичность
+                    </h4>
+                    <p className="text-gray-400 text-sm">
+                      Без растворителей и вредных испарений
+                    </p>
                   </div>
                 </div>
               </div>
@@ -97,7 +113,9 @@ export function HomePage() {
               <div className="bg-red-950/30 w-14 h-14 rounded-lg flex items-center justify-center mb-6 group-hover:bg-red-900/40 transition-colors">
                 <Flame className="w-7 h-7 text-red-500" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Современное оборудование</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Современное оборудование
+              </h3>
               <p className="text-gray-300 leading-relaxed">
                 Используем полимеризационные печи последнего поколения,
                 обеспечивающие равномерное и качественное покрытие.
@@ -108,10 +126,12 @@ export function HomePage() {
               <div className="bg-red-950/30 w-14 h-14 rounded-lg flex items-center justify-center mb-6 group-hover:bg-red-900/40 transition-colors">
                 <Award className="w-7 h-7 text-red-500" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Опытные специалисты</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Опытные специалисты
+              </h3>
               <p className="text-gray-300 leading-relaxed">
-                Команда профессионалов с многолетним опытом работы.
-                Гарантируем высокое качество на каждом этапе.
+                Команда профессионалов с многолетним опытом работы. Гарантируем
+                высокое качество на каждом этапе.
               </p>
             </div>
 
@@ -119,10 +139,12 @@ export function HomePage() {
               <div className="bg-red-950/30 w-14 h-14 rounded-lg flex items-center justify-center mb-6 group-hover:bg-red-900/40 transition-colors">
                 <Shield className="w-7 h-7 text-red-500" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Гарантия качества</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Гарантия качества
+              </h3>
               <p className="text-gray-300 leading-relaxed">
-                Предоставляем гарантию на все виды работ.
-                Используем только сертифицированные материалы.
+                Предоставляем гарантию на все виды работ. Используем только
+                сертифицированные материалы.
               </p>
             </div>
           </div>

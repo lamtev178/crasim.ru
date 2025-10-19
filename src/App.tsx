@@ -1,45 +1,33 @@
-import { useState, useEffect } from 'react';
-import { Navigation } from './components/Navigation';
-import { Footer } from './components/Footer';
-import { HomePage } from './pages/HomePage';
-import { PricingPage } from './pages/PricingPage';
-import { ProcessPage } from './pages/ProcessPage';
-import { ContactPage } from './pages/ContactPage';
+import { Navigation } from "./components/Navigation";
+import { Footer } from "./components/Footer";
+import { Navigate, Route, Routes, useLocation } from "react-router";
+import { AppRoutes } from "./constants/Routes";
+import { Routes as RoutesConts } from "./constants/Routes";
+import { useEffect } from "react";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const location = useLocation();
 
   useEffect(() => {
-    const handleNavigate = (e: Event) => {
-      const customEvent = e as CustomEvent;
-      setCurrentPage(customEvent.detail);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    window.addEventListener('navigate', handleNavigate);
-    return () => window.removeEventListener('navigate', handleNavigate);
-  }, []);
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <HomePage />;
-      case 'pricing':
-        return <PricingPage />;
-      case 'process':
-        return <ProcessPage />;
-      case 'contact':
-        return <ContactPage />;
-      default:
-        return <HomePage />;
-    }
-  };
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-black to-gray-950">
-      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
+      <Navigation />
       <main>
-        {renderPage()}
+        <Routes>
+          {AppRoutes.map((route) => (
+            <Route key={route.path} element={route.page} path={route.path} />
+          ))}
+          <Route
+            path="*"
+            element={<Navigate to={RoutesConts.HOME} replace />}
+          />
+        </Routes>
       </main>
       <Footer />
     </div>
