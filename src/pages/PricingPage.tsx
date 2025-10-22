@@ -1,5 +1,11 @@
 import { NavLink } from "react-router";
 import { Routes } from "../constants/Routes";
+import {
+  FlatProducts,
+  LongProducts,
+  SmallSizeProducts,
+  WheelsProducts,
+} from "../constants/PricingData";
 
 export function PricingPage() {
   return (
@@ -19,65 +25,35 @@ export function PricingPage() {
           <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-gray-800 overflow-hidden">
             <div className="bg-gradient-to-r from-red-900 to-red-700 px-8 py-6">
               <h2 className="text-3xl font-bold text-white">
-                Окраска профильных труб
+                Расчет стоимости плоских изделий
               </h2>
-              <p className="text-red-100 mt-2">Цены указаны за погонный метр</p>
+              <p className="text-red-100 mt-2">
+                При расчёте стоимости покраски сборного изделия и изделия
+                сложной конфигурации общая площадь изделия расчитывается как
+                сумма площадей его частей. Минимальный прогон камеры 3,6 м.
+                -2500 руб., 7,2 м - 5000 руб.
+              </p>
             </div>
             <div className="p-8">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-gray-700">
-                      <th className="text-left py-4 px-4 text-white font-semibold">
-                        Размер профиля
-                      </th>
-                      <th className="text-left py-4 px-4 text-white font-semibold">
-                        Цена (руб/м.п.)
-                      </th>
-                      <th className="text-left py-4 px-4 text-white font-semibold">
-                        Срок выполнения
-                      </th>
+                      {FlatProducts.headers.map((header) => (
+                        <th className="text-left py-4 px-4 text-white font-semibold">
+                          {header}
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">20×20 мм</td>
-                      <td className="py-4 px-4 text-white font-semibold">80</td>
-                      <td className="py-4 px-4 text-gray-300">2-3 дня</td>
-                    </tr>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">25×25 мм</td>
-                      <td className="py-4 px-4 text-white font-semibold">95</td>
-                      <td className="py-4 px-4 text-gray-300">2-3 дня</td>
-                    </tr>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">30×30 мм</td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        110
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">2-3 дня</td>
-                    </tr>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">40×40 мм</td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        140
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">2-3 дня</td>
-                    </tr>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">50×50 мм</td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        175
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">3-4 дня</td>
-                    </tr>
-                    <tr className="hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">60×60 мм</td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        210
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">3-4 дня</td>
-                    </tr>
+                    {FlatProducts.data.map((row) => (
+                      <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
+                        {row.map((el) => (
+                          <td className="py-4 px-4 text-gray-300">{el}</td>
+                        ))}
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -87,64 +63,29 @@ export function PricingPage() {
           <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-gray-800 overflow-hidden">
             <div className="bg-gradient-to-r from-red-900 to-red-700 px-8 py-6">
               <h2 className="text-3xl font-bold text-white">
-                Окраска листового металла
+                Расчет стоимости профиля и длинномерных изделий
               </h2>
-              <p className="text-red-100 mt-2">
-                Цены указаны за квадратный метр
-              </p>
             </div>
             <div className="p-8">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-gray-700">
-                      <th className="text-left py-4 px-4 text-white font-semibold">
-                        Толщина листа
-                      </th>
-                      <th className="text-left py-4 px-4 text-white font-semibold">
-                        Цена (руб/м²)
-                      </th>
-                      <th className="text-left py-4 px-4 text-white font-semibold">
-                        Срок выполнения
-                      </th>
+                      {LongProducts.headers.map((header) => (
+                        <th className="text-left py-4 px-4 text-white font-semibold">
+                          {header}
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">1-2 мм</td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        450
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">2-3 дня</td>
-                    </tr>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">3-4 мм</td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        520
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">2-3 дня</td>
-                    </tr>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">5-6 мм</td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        590
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">3-4 дня</td>
-                    </tr>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">7-8 мм</td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        660
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">3-4 дня</td>
-                    </tr>
-                    <tr className="hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">9-10 мм</td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        730
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">4-5 дней</td>
-                    </tr>
+                    {LongProducts.data.map((row) => (
+                      <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
+                        {row.map((el) => (
+                          <td className="py-4 px-4 text-gray-300">{el}</td>
+                        ))}
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -154,79 +95,50 @@ export function PricingPage() {
           <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-gray-800 overflow-hidden">
             <div className="bg-gradient-to-r from-red-900 to-red-700 px-8 py-6">
               <h2 className="text-3xl font-bold text-white">
-                Окраска металлоконструкций
+                Штучные и маломерные изделия
               </h2>
-              <p className="text-red-100 mt-2">
-                Цены зависят от сложности изделия
-              </p>
             </div>
             <div className="p-8">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-gray-700">
-                      <th className="text-left py-4 px-4 text-white font-semibold">
-                        Тип изделия
-                      </th>
-                      <th className="text-left py-4 px-4 text-white font-semibold">
-                        Цена (руб)
-                      </th>
-                      <th className="text-left py-4 px-4 text-white font-semibold">
-                        Срок выполнения
-                      </th>
+                      {SmallSizeProducts.headers.map((header) => (
+                        <th className="text-left py-4 px-4 text-white font-semibold">
+                          {header}
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">
-                        Ворота распашные (стандарт)
-                      </td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        от 8 000
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">3-5 дней</td>
-                    </tr>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">Калитка</td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        от 3 500
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">2-3 дня</td>
-                    </tr>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">Перила (п.м.)</td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        от 1 200
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">3-4 дня</td>
-                    </tr>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">
-                        Забор (секция 2м)
-                      </td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        от 2 800
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">4-5 дней</td>
-                    </tr>
-                    <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">
-                        Лестница металлическая
-                      </td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        от 12 000
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">5-7 дней</td>
-                    </tr>
-                    <tr className="hover:bg-gray-900/50 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">
-                        Козырек (навес)
-                      </td>
-                      <td className="py-4 px-4 text-white font-semibold">
-                        от 6 500
-                      </td>
-                      <td className="py-4 px-4 text-gray-300">3-5 дней</td>
-                    </tr>
+                    {SmallSizeProducts.data.map((row) => (
+                      <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
+                        {row.map((el) => (
+                          <td className="py-4 px-4 text-gray-300">{el}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-gray-800 overflow-hidden">
+            <div className="bg-gradient-to-r from-red-900 to-red-700 px-8 py-6">
+              <h2 className="text-3xl font-bold text-white">Колесные диски</h2>
+            </div>
+            <div className="p-8">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <tbody>
+                    {WheelsProducts.data.map((row) => (
+                      <tr className="border-b border-gray-800 hover:bg-gray-900/50 transition-colors">
+                        {row.map((el) => (
+                          <td className="py-4 px-4 text-gray-300">{el}</td>
+                        ))}
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
