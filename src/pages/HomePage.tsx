@@ -1,6 +1,10 @@
 import { ArrowRight, Flame, Shield, Star, Award } from "lucide-react";
 import { NavLink } from "react-router";
 import { Routes } from "../constants/Routes";
+import img1 from "../assets/images/40758827_1105871969564599_6886492763649274568_n.jpg";
+import img2 from "../assets/images/25007129_515339782167657_2829785245019013120_n.jpg";
+import img3 from "../assets/images/20181066_712927082246344_2683651250515345408_n.jpg";
+import mainImg from "../assets/images/Home-Welcome-1.jpg";
 
 export function HomePage() {
   return (
@@ -59,7 +63,7 @@ export function HomePage() {
             </div>
             <div className="bg-gradient-to-br from-red-950/30 to-black/50 rounded-2xl p-8 border border-red-900/30">
               <img
-                src="https://images.pexels.com/photos/162539/architecture-building-amsterdam-blue-sky-162539.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src={mainImg}
                 alt="Порошковая покраска металла"
                 className="w-full h-64 object-cover rounded-lg mb-6"
               />
@@ -159,7 +163,7 @@ export function HomePage() {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="relative group overflow-hidden rounded-xl">
               <img
-                src="https://images.pexels.com/photos/220159/pexels-photo-220159.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src={img1}
                 alt="Окрашенные металлические изделия"
                 className="w-full h-64 object-cover transition-transform group-hover:scale-110"
               />
@@ -169,7 +173,7 @@ export function HomePage() {
             </div>
             <div className="relative group overflow-hidden rounded-xl">
               <img
-                src="https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src={img2}
                 alt="Порошковая окраска деталей"
                 className="w-full h-64 object-cover transition-transform group-hover:scale-110"
               />
@@ -179,12 +183,12 @@ export function HomePage() {
             </div>
             <div className="relative group overflow-hidden rounded-xl">
               <img
-                src="https://images.pexels.com/photos/159358/construction-site-build-construction-work-159358.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src={img3}
                 alt="Окрашенные изделия"
                 className="w-full h-64 object-cover transition-transform group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                <p className="text-white font-semibold">Фасадные элементы</p>
+                <p className="text-white font-semibold">Буры</p>
               </div>
             </div>
           </div>

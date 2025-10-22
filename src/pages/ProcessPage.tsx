@@ -1,6 +1,8 @@
 import { CheckCircle, Flame } from "lucide-react";
 import { NavLink } from "react-router";
 import { Routes } from "../constants/Routes";
+import mainImg from "../assets/images/печь.jpg";
+import img from "../assets/images/22157874_2008230892797407_838080786694406144_n.jpg";
 
 export function ProcessPage() {
   return (
@@ -19,7 +21,7 @@ export function ProcessPage() {
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           <div>
             <img
-              src="https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=800"
+              src={mainImg}
               alt="Полимеризационная печь"
               className="w-full h-96 object-cover rounded-2xl"
             />
@@ -200,9 +202,9 @@ export function ProcessPage() {
 
           <div>
             <img
-              src="https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=800"
+              src={img}
               alt="Результат порошковой покраски"
-              className="w-full h-full object-cover rounded-2xl"
+              className="w-full h-96 object-cover rounded-2xl"
             />
           </div>
         </div>
