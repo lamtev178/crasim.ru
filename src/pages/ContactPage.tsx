@@ -1,6 +1,6 @@
+import axios from "axios";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 import { useState, FormEvent } from "react";
-import { supabase } from "../lib/supabase";
 
 export function ContactPage() {
   const [formData, setFormData] = useState({
@@ -20,17 +20,7 @@ export function ContactPage() {
     setSubmitStatus("idle");
 
     try {
-      const { error } = await supabase.from("contact_requests").insert([
-        {
-          name: formData.name,
-          phone: formData.phone,
-          email: formData.email,
-          message: formData.message,
-        },
-      ]);
-
-      if (error) throw error;
-
+      await axios.post("/api/send-email", { formData });
       setSubmitStatus("success");
       setFormData({ name: "", phone: "", email: "", message: "" });
     } catch (error) {
