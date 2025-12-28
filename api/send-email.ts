@@ -90,7 +90,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
-    const template = (data: {
+    const templateForOwner = (data: {
       text: string;
       phone: string;
       email: string;
@@ -101,7 +101,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           <h2 style="color: #333;">Новое сообщение с сайта crasim.ru</h2>
           <div style="background: #f9f9f9; padding: 20px; border-radius: 5px;">
             <p><strong>От:</strong> ${data.name} (${data.email})</p>
-            <p><strong>Телефон:</strong> ${data.text}</p>
+            <p><strong>Телефон:</strong> ${data.phone}</p>
+            <div style="background: white; padding: 15px; margin: 15px 0; border-left: 4px solid #007bff;">
+              <p style="white-space: pre-wrap; margin: 0;">Текст сообщения:${
+                data.text
+              }</p>
+            </div>
+          </div>
+          <p style="color: #666; font-size: 12px; margin-top: 20px;">
+            ${new Date().toLocaleString()}
+          </p>
+        </div>
+      `;
+    };
+    const templateForUser = (data: { text: string }) => {
+      return `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #333;">Новое сообщение с сайта crasim.ru</h2>
+          <div style="background: #f9f9f9; padding: 20px; border-radius: 5px;">
+          <p style="white-space: pre-wrap; margin: 0;">Спасибо что связались с нами, копия вашего обращения снизу</p>
+            <p><strong>Телефон для обратной связи:</strong>+7 (929) 667-99-93</p>
             <div style="background: white; padding: 15px; margin: 15px 0; border-left: 4px solid #007bff;">
               <p style="white-space: pre-wrap; margin: 0;">Текст сообщения:${
                 data.text
@@ -116,33 +135,56 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     };
 
     // Получаем HTML из шаблона или используем переданный
-    const emailHtml = template({
+    const emailHtmlForOwner = templateForOwner({
       ...req.body,
       text: message,
       name: name,
       phone,
       email,
     });
+    // Получаем HTML из шаблона или используем переданный
+    const emailHtmlForUser = templateForUser({
+      text: message,
+    });
 
     // Настройки письма
-    const mailOptions = {
+    const mailOptionsToUser = {
       from: `"${process.env.SMTP_FROM_NAME || "App"}" <${
-        process.env.SMTP_FROM
+        process.env.SMTP_USER
       }>`,
       to: email,
       subject: email,
       text: message,
-      html: emailHtml,
+      html: emailHtmlForUser,
+    };
+    const mailOptionsToOwner = {
+      from: `"${process.env.SMTP_FROM_NAME || "App"}" <${
+        process.env.SMTP_USER
+      }>`,
+      to: process.env.SMTP_USER,
+      subject: email,
+      text: message,
+      html: emailHtmlForOwner,
     };
 
     // Отправка письма
-    const info = await transporter.sendMail(mailOptions);
+    const infoForUser = await transporter.sendMail(mailOptionsToUser);
+    const infoForOwner = await transporter.sendMail(mailOptionsToOwner);
+
+    // // Логирование успешной отправки
+    console.log("Email sent:", {
+      email,
+      phone,
+      messageId: infoForUser.messageId,
+      timestamp: new Date().toISOString(),
+      ip,
+    });
 
     // Логирование успешной отправки
     console.log("Email sent:", {
       email,
       phone,
-      messageId: info.messageId,
+      messageId: infoForOwner.messageId,
       timestamp: new Date().toISOString(),
       ip,
     });
@@ -150,7 +192,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json({
       success: true,
       message: "Email sent successfully",
-      messageId: info.messageId,
+      messageId: infoForOwner.messageId,
     });
   } catch (error: any) {
     console.error("Error sending email:", error);
