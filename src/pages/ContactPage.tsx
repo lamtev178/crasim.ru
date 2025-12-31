@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 import { useState, FormEvent } from "react";
+import Map from "../components/Map";
 
 export function ContactPage() {
   const [formData, setFormData] = useState({
@@ -238,15 +239,9 @@ export function ContactPage() {
           </div>
         </div>
 
+        <h2 className="text-3xl font-bold text-white mb-8">Карта проезда</h2>
         <div className="rounded-2xl overflow-hidden border border-gray-800">
-          <iframe
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3A64b1d7b8baf6fd9d3e3b6c3c9f5d2a3c5f6e7d8c9b0a1f2e3d4c5b6a7989&amp;source=constructor"
-            width="100%"
-            height="500"
-            frameBorder="0"
-            className="w-full"
-            title="Карта проезда"
-          ></iframe>
+          <Map style={{ width: "100%", height: "500px" }} className="w-full" />
         </div>
       </div>
     </div>
